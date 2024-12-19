@@ -1,0 +1,5 @@
+[versions]
+pgnc-version = "0.0.1"
+
+[libraries]
+pgnc = { module = "dev.mcarr:pgnc", version.ref = "pgnc-version" }

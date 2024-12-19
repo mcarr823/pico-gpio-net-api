@@ -9,10 +9,12 @@ group = "dev.mcarr.pgna"
 version = "0.0.1-SNAPSHOT"
 
 repositories {
+	mavenLocal()
 	mavenCentral()
 }
 
 dependencies {
+	implementation(libs.pgnc)
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
