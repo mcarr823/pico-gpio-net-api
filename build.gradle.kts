@@ -15,6 +15,8 @@ repositories {
 
 dependencies {
 	implementation(libs.pgnc)
+	implementation(libs.coroutines.core)
+	implementation(libs.coroutines.reactor)
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")

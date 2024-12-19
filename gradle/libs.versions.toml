@@ -1,5 +1,8 @@
 [versions]
+coroutines-version = "1.9.0"
 pgnc-version = "0.0.1"
 
 [libraries]
+coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines-version" }
+coroutines-reactor = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-reactor", version.ref = "coroutines-version" }
 pgnc = { module = "dev.mcarr:pgnc", version.ref = "pgnc-version" }

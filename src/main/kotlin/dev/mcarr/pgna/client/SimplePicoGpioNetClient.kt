@@ -23,4 +23,13 @@ class SimplePicoGpioNetClient(
         client.close()
     }
 
+
+    override suspend fun getName(): String {
+        return client.getName()
+    }
+
+    override suspend fun getApiVersion(): Int {
+        return client.getApiVersion().toInt()
+    }
+
 }

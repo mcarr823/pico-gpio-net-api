@@ -6,4 +6,7 @@ interface IPicoGpioNetClient : Closeable {
 
     suspend fun connect()
 
+    suspend fun getName(): String
+    suspend fun getApiVersion(): Int
+
 }
