@@ -5,6 +5,7 @@ import dev.mcarr.pgna.server.data.classes.IntResponse
 import dev.mcarr.pgna.server.data.classes.PinValue
 import dev.mcarr.pgna.server.data.classes.StringResponse
 import dev.mcarr.pgna.server.data.request.PinRequest
+import dev.mcarr.pgna.server.data.request.PinsRequest
 import dev.mcarr.pgna.server.interfaces.IPicoGpioNetClient
 import dev.mcarr.pgnc.PicoGpioNetClient
 import java.io.Closeable
@@ -38,11 +39,29 @@ class SimplePicoGpioNetClient(
         return BooleanResponse(success)
     }
 
+    override suspend fun setPins(req: PinsRequest.Set): BooleanResponse {
+        val pinsAndValues = req.pins.map { (pin, value) ->
+            pin.toByte() to value.toByte()
+        }
+        client.setPins(pinsAndValues)
+        val result = client.flush()
+        val success = result[0]
+        return BooleanResponse(success)
+    }
 
     override suspend fun getPin(req: PinRequest.Get): PinValue {
         val pin = req.pin
         val value = client.getPin(pin = pin.toByte()).toInt()
         return PinValue(pin = pin, value = value)
+    }
+
+    override suspend fun getPins(req: PinsRequest.Get): List<PinValue> {
+        val pins = req.pins.map { it.toByte() }
+        val values = client.getPins(pins = pins.toByteArray())
+        return req.pins.mapIndexed { i, pin ->
+            val value = values[i].toInt()
+            PinValue(pin = pin, value = value)
+        }
     }
     override suspend fun waitForPin(req: PinRequest.Wait): BooleanResponse {
         client.waitForPin(
