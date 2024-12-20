@@ -1,8 +1,10 @@
 [versions]
 coroutines-version = "1.9.0"
 pgnc-version = "0.0.1"
+kotlinx-serialization-version = "1.8.0-RC"
 
 [libraries]
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines-version" }
 coroutines-reactor = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-reactor", version.ref = "coroutines-version" }
 pgnc = { module = "dev.mcarr:pgnc", version.ref = "pgnc-version" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-version" }
