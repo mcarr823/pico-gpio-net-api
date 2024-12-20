@@ -2,7 +2,7 @@
 
 PGNA (pico-gpio-net-api) is a Spring Boot microservice written in Kotlin.
 
-It provides an API for interfacing with a Raspberry Pi Pico which runs the pico-gpio-net daemon.
+It provides an API for interfacing with a Raspberry Pi Pico which runs the [pico-gpio-net daemon](https://github.com/mcarr823/pico-gpio-net).
 
 PGNA acts as middleware which translates regular HTTP requests into pico-gpio-net requests and executes them on a Pico.
 
