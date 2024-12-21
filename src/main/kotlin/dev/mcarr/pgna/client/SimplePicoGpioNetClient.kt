@@ -10,11 +10,46 @@ import dev.mcarr.pgna.server.interfaces.IPicoGpioNetClient
 import dev.mcarr.pgnc.PicoGpioNetClient
 import java.io.Closeable
 
+/**
+ * PGN server client implementation.
+ *
+ * This class translates API request bodies into PGN requests
+ * and sends them to the actual PGN client.
+ *
+ * ie. It takes data from this application's API endpoints
+ * (defined by Sping Boot web annotations), then converts
+ * the data to a format which the PGNC (pico-gpio-net-client)
+ * library understands.
+ *
+ * So the process is something like:
+ *
+ * API endpoint -> PGN server client (this class) -> actual PGN client
+ *
+ * Example usage:
+ *
+ * ```
+ * val stringResponse = SimplePicoGpioNetClient(ip, port).use{ client ->
+ *     client.connect()
+ *     client.getName()
+ * }
+ * ```
+ *
+ * @param ip IP address of the Pico device running
+ * PGN which we want to connect to.
+ * @param port Port on which PGN is running. This is
+ * usually port 8080.
+ *
+ * @see IPicoGpioNetClient
+ * */
 class SimplePicoGpioNetClient(
     ip: String,
     port: Int
 ): Closeable, IPicoGpioNetClient {
 
+    /**
+     * Underlying PGN client which handles the actual PGN requests,
+     * raw byta data conversions, etc.
+     * */
     private val client = PicoGpioNetClient(
         ip = ip,
         port = port,
