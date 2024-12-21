@@ -63,6 +63,21 @@ class SimplePicoGpioNetClient(
             PinValue(pin = pin, value = value)
         }
     }
+
+    override suspend fun spiWrite(data: ByteArray): BooleanResponse {
+        client.spiWrite(data)
+        val result = client.flush()
+        val success = result[0]
+        return BooleanResponse(success)
+    }
+
+    override suspend fun delay(millis: Short): BooleanResponse {
+        client.delay(millis)
+        val result = client.flush()
+        val success = result[0]
+        return BooleanResponse(success)
+    }
+
     override suspend fun waitForPin(req: PinRequest.Wait): BooleanResponse {
         client.waitForPin(
             pin = req.pin.toByte(),

@@ -19,6 +19,10 @@ interface IPicoGpioNetClient : Closeable {
     suspend fun getPins(req: PinsRequest.Get): List<PinValue>
     suspend fun setPins(req: PinsRequest.Set): BooleanResponse
 
+    suspend fun spiWrite(data: ByteArray): BooleanResponse
+
+    suspend fun delay(millis: Short): BooleanResponse
+
     suspend fun getName(): StringResponse
     suspend fun getApiVersion(): IntResponse
 
